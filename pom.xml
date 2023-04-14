@@ -1,0 +1,79 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>de.marcorohn</groupId>
+  <artifactId>mirror</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>mirror</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <java.version>16.0.2</java.version>
+  </properties>
+
+  <build>
+    <plugins>
+     <plugin>
+       <groupId>com.hubspot.maven.plugins</groupId>
+       <artifactId>prettier-maven-plugin</artifactId>
+       <version>0.18</version>
+       <configuration>
+         <prettierJavaVersion>1.6.2</prettierJavaVersion>
+         <printWidth>150</printWidth>
+         <tabWidth>4</tabWidth>
+         <useTabs>true</useTabs>
+         <ignoreConfigFile>true</ignoreConfigFile>
+         <ignoreEditorConfig>true</ignoreEditorConfig>
+       </configuration>
+       <executions>
+         <execution>
+           <phase>validate</phase>
+           <goals>
+             <goal>write</goal>
+           </goals>
+         </execution>
+       </executions>
+     </plugin>
+
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+            <source>16</source>
+            <target>16</target>
+        </configuration>
+    </plugin>
+
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-jar-plugin</artifactId>
+      <version>3.2.0</version>
+      <configuration>
+        <archive>
+          <manifest>
+            <addClasspath>true</addClasspath>
+            <mainClass>de.marcorohn.mirror.Mirror</mainClass>
+          </manifest>
+        </archive>
+      </configuration>
+    </plugin>
+   </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.2</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.reflections</groupId>
+      <artifactId>reflections</artifactId>
+      <version>0.10.2</version>
+    </dependency>
+  </dependencies>
+</project>
